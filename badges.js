@@ -1,5 +1,6 @@
 
 var userNames 	= ['Jasonsiren', 'josephfraley2', 'adamtaitano', 'kathleenkent', 'mkelley2', 'donguyen', 'jeffdunn', 'erikphansen', 'patharryux', 'mitchelllillie', 'jenniferminetree'];
+
 var users 		= { };	//people
 var badges 		= { }; 	//chores
 
@@ -56,7 +57,7 @@ function collectAllBadges ( ){
 		
 			//	call this method to return an array of user objects that have this badge
 			badges[userBadges[badge].name].who = function ( ){
-				
+
 				var who = [];
 
 				// if ( arguments.length > 1 ){
@@ -112,13 +113,33 @@ function addWho ( ) {
 // 		make a badge div for a user
 //================================================
 
-function displayBadge () {
+function buildDashBoard ( user ) {
+	var $div = $('<div>', {'class': 'user__dashboard'} );
+	$div.append( $('<h1>', {'class': 'user__name'}) ).html( user );
 
+	var $body = $('body');
+
+	$body.append($div);
+
+	for ( badge in users[user].badges ){
+
+		console.log('this badge image url, ', users[user].badges[badge].icon_url )
+		console.log('this badge title, ', users[user].badges[badge].name)
+
+		var $badgeBoard = $('<div>', {'class': 'user__badge-board'} )
+		$div.append($badgeBoard);
+
+		var $badge = $('<img>', {'src': users[user].badges[badge].icon_url, 'class': 'user__badge'} );
+		var $title = $('<span>', {'class': 'user__badge__title'}).html( users[user].badges[badge].name );
+		$badgeBoard.append($title);
+		$badgeBoard.append($badge);
+		
+	}
 }
 
 
 
-//		make a user dashboard div
+//		make a user dashboard div from input
 //================================================
 
 

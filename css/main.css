@@ -1,0 +1,13 @@
+.badgeBoard {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  margin: 0 auto; }
+
+.badge {
+  width: 26.66667%;
+  height: 26.66667%; }
+
+/*# sourceMappingURL=main.css.map */

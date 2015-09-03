@@ -1,0 +1,18 @@
+$badgeBoardWidth: 80%;
+$width: ($badgeBoardWidth/3 ) ;
+$center: 0 auto;
+
+.badgeBoard {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: center;
+	width: $badgeBoardWidth;
+	margin: $center;
+}
+
+.badge {
+	box-shadow: 0 10px 20px #000;
+	width: $width;
+	height: $width;
+}

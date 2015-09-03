@@ -1,7 +1,7 @@
 
-var userNames = ['Jasonsiren', 'josephfraley2', 'adamtaitano', 'kathleenkent', 'mkelley2', 'donguyen', 'jeffdunn', 'erikphansen', 'patharryux', 'mitchelllillie'];
-var users = {};	 //people
-var badges = {}; //chores
+var userNames 	= ['Jasonsiren', 'josephfraley2', 'adamtaitano', 'kathleenkent', 'mkelley2', 'donguyen', 'jeffdunn', 'erikphansen', 'patharryux', 'mitchelllillie', 'jenniferminetree'];
+var users 		= { };	//people
+var badges 		= { }; 	//chores
 
 
 
@@ -18,6 +18,9 @@ function getData ( username ) {
 //=================================================================
 
 function callback ( results ) {
+	// console.log( 'I am the result of the ajax request!: ')
+	// console.log( results )
+	// console.log( "\n I'm the name property on that guy!: " + results.name )
 	users[results.name] = results;
 }
 
@@ -44,11 +47,35 @@ function collectAllBadges ( ){
 	for ( var user in users ) {
 
 		var userBadges = getBadges( user );
-		for ( var badge in userBadges ) {
-			if ( !(userBadges[badge].name in badges) ){
 
+		for ( var badge in userBadges ) {
+			
+			if ( !(userBadges[badge].name in badges) ){
 				badges[userBadges[badge].name] = userBadges[badge];
 			}
+		
+			//	call this method to return an array of user objects that have this badge
+			badges[userBadges[badge].name].who = function ( ){
+				
+				var who = [];
+
+				// if ( arguments.length > 1 ){
+					
+				// }
+				
+				for ( var user in users ) {
+
+					for ( var i = 0; i < users[user].badges.length; i++ ) {
+
+						if ( users[user].badges[i].name === this.name ){
+							who.push(users[user]);
+						}
+					}
+				}
+
+				return who;
+			}
+
 		}
 	}
 }
@@ -56,11 +83,28 @@ function collectAllBadges ( ){
 
 
 //		get badges for a single user
-//================================================
+//===============================================================
 
+// ex: getBadges('Joseph Fraley') => [{badge}, {badge}, {badge}]
 function getBadges ( userName ) {
 	var badges = users[ userName ].badges;
 	return badges;
+}
+
+
+
+//		add a who property containing user objects
+//===============================================================
+
+// ex: getBadges('Joseph Fraley') => [{badge}, {badge}, {badge}]
+function addWho ( ) {
+	for ( var badge in badges ) {
+		for ( var user in users ) {
+			if ( badge in user.badges ) {
+
+			}
+		}
+	}
 }
 
 
@@ -69,7 +113,7 @@ function getBadges ( userName ) {
 //================================================
 
 function displayBadge () {
-	
+
 }
 
 

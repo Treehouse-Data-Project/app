@@ -1,81 +1,144 @@
-$badgeContainerWidth: 10%;
+/* TABLE OF CONTENTS
+============================*/
 
-/*	GENERAL STYLES
-==========================================*/
 
-#user_select {
-	width: 195px;
+/*
+// Sass definitions
+1. General
+2. Dashboard
+3. Namecard
+4. Recommended Badges
+5. Topics Learned
+6. Recent Badges
+7. Timeline
+*/
+
+
+//SASS VARIABLE DEFINITIONS
+$dashboardWidth: 			100%;
+$dashboardGutter: 			3.75%;
+$nameCardWidth: 			( $dashboardWidth - ($dashboardGutter * 3) ) / 3;
+$timeLineWidth: 			( ( $dashboardWidth - ($dashboardGutter * 3) ) / 3 ) * 2;
+$recentBadgesWidth: 		$dashboardWidth - ($dashboardGutter * 2);
+$recommendedBadgesWidth: 	( ( $dashboardWidth - ($dashboardGutter * 3) ) / 2 );
+$topicsLearnedWidth: 		( ( $dashboardWidth - ($dashboardGutter * 3) ) / 2 );
+
+$dashboardHeight:			100%;
+$containerHeight: 			( $dashboardHeight - ($dashboardGutter * 4) ) / 3;
+
+$primaryColor: 				brown;
+$secondaryColor:			darkgreen;
+$highlightColor:			tan;
+
+$primaryFont:				serif;
+$titleFont:					sans-serif;
+
+
+
+
+/* 1. GENERAL STYLES
+============================*/
+
+div {
+	display: inline-block;
+}
+
+
+/* 2. DASHBOARD STYLES
+============================*/
+
+.user__dashboard{
+	width: $dashboardWidth;
+	height: $dashboardHeight;
+}
+.user__name{
+
 }
 
 
 
-/*	DASHBOARD STYLES
-==========================================*/
 
-.user__dashboard {
-	width: 100%;
-	background-color: #b0b0b0;
+/* 3. NAMECARD STYLES
+============================*/
+
+.nameCard {
+	width: $nameCardWidth;
+	height: $containerHeight;
+	background: $primaryColor;
+	//border: 1px solid $secondaryColor;
+	margin: $dashboardGutter ($dashboardGutter/2) ($dashboardGutter/2) $dashboardGutter;
 }
+.nameCard__image{
 
-.user__name {
-	width: 100%;
-	font-size: 20px;
-	font-weight: bold;
 }
-
-//badges container
-.user__badges {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-}
-
-//individual badge card
-.badges__badge {
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: space-between;
-	align-content: space-between;
-	width: $badgeContainerWidth;
-}
-
-.badges__badge--image {
-	width: 100%;
-}
-
-.badges__badge--title {
-	display: none;
-	width: 100%;
-	text-align: center;
-}
-
-//container for all reccomendation stuff;
-.user__recommendations {
-	width: 100%;
-}
-
-//recommended container for just the badges
-.rec-container {
-	display: flex;
-	flex-flow: row nowrap;
-	width: 100%;
-}
-
-//individual recommendation card
-.recommendations__recommended {
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: space-between;
-	width: $badgeContainerWidth;
-	margin: 2%;
+.nameCard__title{
 
 }
 
-.recommendations__recommended--title {
-	text-align: center;
+
+
+/* 4. RECOMMENDED STYLES
+============================*/
+
+.recommendationCard{
+	width: $recommendedBadgesWidth;
+	height: $containerHeight;
+	background: $primaryColor;
+	//border: 1px solid $secondaryColor;
+	margin: ($dashboardGutter/2) ($dashboardGutter/2) ($dashboardGutter/2) $dashboardGutter;
 }
 
-.recommendations__recommended--image {
-	width: 100%;
+.recommendationCard__image{
+
 }
+
+
+
+/* 5. TOPICS LEARNED STYLES
+============================*/
+
+.topicsLearned {
+	width: $topicsLearnedWidth;
+	height: $containerHeight;
+	background: $primaryColor;
+	//border: 1px solid $secondaryColor;
+	margin: ($dashboardGutter/2) $dashboardGutter ($dashboardGutter/2) ($dashboardGutter/2);
+}
+.topicsLearned__title{}
+.topicsLearned__list{}
+.topicsLearned__list li{}
+
+
+
+/* 6. RECENT BADGES STYLES
+============================*/
+
+.recentBadges{
+	width: $recentBadgesWidth;
+	height: $containerHeight;
+	background: $primaryColor;
+	//border: 1px solid $secondaryColor;
+	margin: ($dashboardGutter/2) $dashboardGutter ($dashboardGutter/2) $dashboardGutter;
+}
+.recentBadges__badge{}
+.recentBadges__badge--image{}
+.recentBadges__badge--title{}
+
+
+
+/* 7. TIMELINE STYLES
+============================*/
+.timeLine{
+	width: $timeLineWidth;
+	height: $containerHeight;
+	background: $primaryColor;
+	//border: 1px solid $secondaryColor;
+	margin: $dashboardGutter $dashboardGutter ($dashboardGutter/2) ($dashboardGutter/2);
+}
+.timeLine__title{}
+.timeLine__div{}
+
+
+
+
 

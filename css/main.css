@@ -1,58 +1,64 @@
-/*	GENERAL STYLES
-==========================================*/
-#user_select {
-  width: 195px; }
+/* TABLE OF CONTENTS
+============================*/
+/*
+// Sass definitions
+1. General
+2. Dashboard
+3. Namecard
+4. Recommended Badges
+5. Topics Learned
+6. Recent Badges
+7. Timeline
+*/
+/* 1. GENERAL STYLES
+============================*/
+div {
+  display: inline-block; }
 
-/*	DASHBOARD STYLES
-==========================================*/
+/* 2. DASHBOARD STYLES
+============================*/
 .user__dashboard {
   width: 100%;
-  background-color: #b0b0b0; }
+  height: 100%; }
 
-.user__name {
-  width: 100%;
-  font-size: 20px;
-  font-weight: bold; }
+/* 3. NAMECARD STYLES
+============================*/
+.nameCard {
+  width: 29.58333%;
+  height: 28.33333%;
+  background: brown;
+  margin: 3.75% 1.875% 1.875% 3.75%; }
 
-.user__badges {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center; }
+/* 4. RECOMMENDED STYLES
+============================*/
+.recommendationCard {
+  width: 44.375%;
+  height: 28.33333%;
+  background: brown;
+  margin: 1.875% 1.875% 1.875% 3.75%; }
 
-.badges__badge {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-content: space-between;
-  width: 10%; }
+/* 5. TOPICS LEARNED STYLES
+============================*/
+.topicsLearned {
+  width: 44.375%;
+  height: 28.33333%;
+  background: brown;
+  margin: 1.875% 3.75% 1.875% 1.875%; }
 
-.badges__badge--image {
-  width: 100%; }
+/* 6. RECENT BADGES STYLES
+============================*/
+.recentBadges {
+  width: 92.5%;
+  height: 28.33333%;
+  background: brown;
+  margin: 1.875% 3.75% 1.875% 3.75%; }
 
-.badges__badge--title {
-  display: none;
-  width: 100%;
-  text-align: center; }
-
-.user__recommendations {
-  width: 100%; }
-
-.rec-container {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%; }
-
-.recommendations__recommended {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  width: 10%;
-  margin: 2%; }
-
-.recommendations__recommended--title {
-  text-align: center; }
-
-.recommendations__recommended--image {
-  width: 100%; }
+/* 7. TIMELINE STYLES
+============================*/
+.timeLine {
+  width: 59.16667%;
+  height: 28.33333%;
+  background: brown;
+  margin: 3.75% 3.75% 1.875% 1.875%; }
 
 /*# sourceMappingURL=main.css.map */

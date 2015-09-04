@@ -115,16 +115,16 @@ function buildDashBoard ( user ) {
 	$body.append($dashboard);
 
 
-	var $nameCard = buildNameCard();
-	var $timeLine = buildTimeLine();
+	var $nameCard 			= buildNameCard();
+	var $timeLine 			= buildTimeLine();
 	var $recommendationCard = buildRecommendationCard();
-	var $recentBadges = buildRecentBadges();
-	var $topicsLearned = buildTopicsLearned();
+	var $recentBadges 		= buildRecentBadges();
+	var $topicsLearned 		= buildTopicsLearned();
 
 	$dashboard.append($nameCard)
 			  .append($timeLine)
-			  .append($recommendationCard)
 			  .append($recentBadges)
+			  .append($recommendationCard)
 			  .append($topicsLearned)
 
 }	// <----------END OF DASHBOARD CONSTRUCTION--------->

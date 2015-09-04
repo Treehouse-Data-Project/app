@@ -15,8 +15,9 @@
 
 
 //SASS VARIABLE DEFINITIONS
-$dashboardWidth: 			100%;
-$dashboardGutter: 			3.75%;
+$dashboardWidth: 			95%;
+$dashboardGutter: 			2%;
+
 $nameCardWidth: 			( $dashboardWidth - ($dashboardGutter * 3) ) / 3;
 $timeLineWidth: 			( ( $dashboardWidth - ($dashboardGutter * 3) ) / 3 ) * 2;
 $recentBadgesWidth: 		$dashboardWidth - ($dashboardGutter * 2);
@@ -26,9 +27,9 @@ $topicsLearnedWidth: 		( ( $dashboardWidth - ($dashboardGutter * 3) ) / 2 );
 $dashboardHeight:			100%;
 $containerHeight: 			( $dashboardHeight - ($dashboardGutter * 4) ) / 3;
 
-$primaryColor: 				brown;
+$primaryColor: 				darkgreen;
 $secondaryColor:			darkgreen;
-$highlightColor:			tan;
+$highlightColor:			saddlebrown;
 
 $primaryFont:				serif;
 $titleFont:					sans-serif;
@@ -43,6 +44,14 @@ div {
 	display: inline-block;
 }
 
+input {
+	width: 250px;
+	border: 1px solid steelblue;
+}
+
+* {
+	font-family: $primaryFont;
+}
 
 /* 2. DASHBOARD STYLES
 ============================*/
@@ -50,11 +59,25 @@ div {
 .user__dashboard{
 	width: $dashboardWidth;
 	height: $dashboardHeight;
+	border: 2px solid black;
+	margin: 0 auto;
+	background: $primaryColor;
+	margin-top: 20px;
 }
 .user__name{
 
 }
 
+.user__dashboard div {
+	padding: 5px;
+}
+
+.user__dashboard h2 {
+	padding: 5px 0;
+	font-size: 20px;
+	font-family: $titleFont;
+	color: white;
+}
 
 
 
@@ -64,15 +87,16 @@ div {
 .nameCard {
 	width: $nameCardWidth;
 	height: $containerHeight;
-	background: $primaryColor;
-	//border: 1px solid $secondaryColor;
+	background: $highlightColor;
 	margin: $dashboardGutter ($dashboardGutter/2) ($dashboardGutter/2) $dashboardGutter;
 }
 .nameCard__image{
-
+	width: 100%;
 }
 .nameCard__title{
-
+	font-size: 28px;
+	color: white;
+	font-family: $titleFont;
 }
 
 
@@ -83,13 +107,14 @@ div {
 .recommendationCard{
 	width: $recommendedBadgesWidth;
 	height: $containerHeight;
-	background: $primaryColor;
+	background: $highlightColor;
 	//border: 1px solid $secondaryColor;
 	margin: ($dashboardGutter/2) ($dashboardGutter/2) ($dashboardGutter/2) $dashboardGutter;
 }
 
 .recommendationCard__image{
-	width: 33%;
+	width: 28%;
+	margin: 5px;
 }
 
 
@@ -100,12 +125,15 @@ div {
 .topicsLearned {
 	width: $topicsLearnedWidth;
 	height: $containerHeight;
-	background: $primaryColor;
+	background: $highlightColor;
 	//border: 1px solid $secondaryColor;
 	margin: ($dashboardGutter/2) $dashboardGutter ($dashboardGutter/2) ($dashboardGutter/2);
+	vertical-align: top;
+
 }
 .topicsLearned__title{}
-.topicsLearned__list{}
+.topicsLearned__list{
+}
 .topicsLearned__list li{}
 
 
@@ -116,13 +144,20 @@ div {
 .recentBadges{
 	width: $recentBadgesWidth;
 	height: $containerHeight;
-	background: $primaryColor;
+	background: $highlightColor;
 	//border: 1px solid $secondaryColor;
 	margin: ($dashboardGutter/2) $dashboardGutter ($dashboardGutter/2) $dashboardGutter;
 }
+
+div.recentBadges  {
+	padding: 10px;
+}
+
 .recentBadges__badge{
 	width: 10%;
 	text-align: center;
+	position: relative;
+	margin: 5px;
 }
 
 .recentBadges__badge--image{
@@ -133,6 +168,15 @@ div {
 	font-size: 10px;
 }
 
+.recentBadges__badge--tooltip {
+	background: rgba( 0, 0, 0, .8 );
+	border-radius: 5%;
+	color: white;
+	z-index: 99999;
+	position: absolute;
+	left: -20px;
+}
+
 
 
 /* 7. TIMELINE STYLES
@@ -140,9 +184,10 @@ div {
 .timeLine{
 	width: $timeLineWidth;
 	height: $containerHeight;
-	background: $primaryColor;
+	background: $highlightColor;
 	//border: 1px solid $secondaryColor;
 	margin: $dashboardGutter $dashboardGutter ($dashboardGutter/2) ($dashboardGutter/2);
+	vertical-align: top;
 }
 .timeLine__title{}
 .timeLine__div{}

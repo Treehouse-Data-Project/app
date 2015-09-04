@@ -12,12 +12,12 @@ if(typeof require !== "undefined") {
 
 
 
-function buildNameCard () {
+function buildNameCard (user) {
 
 	var $nameCard = $( '<div>', {'class': 'nameCard'} );
 
-	var $image = $('<img>', { /* 'src': */ 'class': 'nameCard__image'});
-	var $title = $('<h1>', {'class': 'nameCard__title'}).html( /*USER PROFILE NAME*/ );
+	var $image = $('<img>', { 'src': users[user].gravatar_url, 'class': 'nameCard__image'});
+	var $title = $('<h1>', {'class': 'nameCard__title'}).html( users[user].name );
 
 	$nameCard.append($image);
 	$nameCard.append($title);
@@ -31,7 +31,7 @@ function buildTimeLine () {
 	var $timeLine = $('<div>', {'class': 'timeLine'} );
 
 	var $title = $('<h2>', {'class': 'timeLine__title' });
-	var $graph = $('<div>', {'class': 'timeLine__graph' });
+	var $graph = $('<div>', {'class': 'timeLine__graph' }).append( $('<img>', {'src': './css/graph.png', 'style': 'width: 100%;'}) );
 
 	$timeLine.append($title)
 	$timeLine.append($graph);
@@ -61,15 +61,41 @@ function buildRecommendationCard (user) {
 
 }
 
-function buildTopicsLearned () {
+function buildTopicsLearned ( user ) {
 
 	var $topicsLearned = $('<div>', {'class': 'topicsLearned'} );
 
-	var $title = $('<h2>', {'class': 'topicsLearned__title'} );
+	var $title = $('<h2>', {'class': 'topicsLearned__title'} ).html('Top subjects: ');
 	var $list  = $('<ul>', {'class': 'topicsLearned__list'} );
 
-	for ( var i = 0; i < 3; i++ ){
-		var $topic = $('<li>').html( /* user.points[i] */);
+	var topicsArray = [] 
+
+	for ( topic in users[user].points ){
+		
+		var topicObject = {}
+
+		topicObject.points = users[user].points[topic];
+		topicObject.name = topic;
+
+		topicsArray.push( topicObject );
+	}
+
+	console.log( topicsArray );
+
+	var orderedTopics = topicsArray.sort( function( first, second ){
+		
+		console.log( 'first object ', first )
+
+		if( first.points > second.points ) {
+	      return -1;
+	    }
+	    return 1;
+	})
+
+
+	for ( var i = 1; i < 4; i++ ){
+		console.log(users[user].points)
+		var $topic = $('<li>').html( topicsArray[i].name + ' - ' + topicsArray[i].points );
 		$list.append($topic);
 	}
 
@@ -79,9 +105,18 @@ function buildTopicsLearned () {
 	return $topicsLearned;
 }
 
+function startHover ( ) {
+	var $info = $('<div>', {'class': 'recentBadges__badge--tooltip'}).html( this.name )
+	$info.appendTo( $(this) );
+}
+
+function stopHover ( ) {
+	$('.recentBadges__badge--tooltip').remove();
+}
+
 function buildRecentBadges ( user ) {
 
-	var $recentBadges = $('<div>', {'class': 'recentBadges'}).append($('<h2>').html('Recent badges'))
+	var $recentBadges = $('<div>', {'class': 'recentBadges'}).append($('<h2>').html('Recent badges: '))
 
 	var orderedBadges = badgesEarnedBy( user ).sort( 
 		function( first, second ){ 
@@ -95,17 +130,26 @@ function buildRecentBadges ( user ) {
 		    return 1;
 		})
 
+	for ( var i = 0; i < orderedBadges.length; i++ ){
 
-	for ( var i = 0; i < 10; i++ ){
+		if ( i < 10 ) {
+		//if ( orderedBadges[i].name !== 'undefined' ) {
 
-		if ( orderedBadges[i].name !== 'undefined' ) {
+			var earnedDate = new Date( orderedBadges[i].earned_date );
+			earnedDateTrimmed = (earnedDate.getMonth() + 1) + '/' + earnedDate.getDate() + '/' + earnedDate.getFullYear().toString().slice(2);
+
+
 			//make a card to hold badge image and title
 			var $badge = $('<div>', {'class': 'recentBadges__badge'})
+			$badge[0].name = orderedBadges[i].name;
 
 
 			//make badge image and title
 			var $badgeImage = $('<img>', { 'src': orderedBadges[i].icon_url, 'class': 'recentBadges__badge--image'} );
-			var $badgeTitle = $('<span>', {'class': 'recentBadges__badge--title'}).html( orderedBadges[i].earned_date.slice(0, 10) );
+			
+			$badge.hover( startHover, stopHover );
+
+			var $badgeTitle = $('<span>', {'class': 'recentBadges__badge--title'}).html( earnedDateTrimmed );
 
 
 			//add the title and image to a badge card
@@ -115,6 +159,7 @@ function buildRecentBadges ( user ) {
 
 			//add the current badge card to the badges container
 			$recentBadges.append($badge);
+		//}
 		}
 	}
 
@@ -134,11 +179,11 @@ function buildDashBoard ( user ) {
 	$body.append($dashboard);
 
 
-	var $nameCard 			= buildNameCard();
-	var $timeLine 			= buildTimeLine();
+	var $nameCard 			= buildNameCard(user);
+	var $timeLine 			= buildTimeLine(user);
 	var $recommendationCard = buildRecommendationCard(user);
 	var $recentBadges 		= buildRecentBadges(user);
-	var $topicsLearned 		= buildTopicsLearned();
+	var $topicsLearned 		= buildTopicsLearned(user);
 
 	$dashboard.append($nameCard)
 			  .append($timeLine)
@@ -146,7 +191,7 @@ function buildDashBoard ( user ) {
 			  .append($recommendationCard)
 			  .append($topicsLearned)
 
-}	// <----------END OF DASHBOARD CONSTRUCTION--------->
+}
 
 
 

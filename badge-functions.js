@@ -73,7 +73,9 @@ function hasBadge(user, badgeObj) {
     //   return response;
     // };
 
-function usersWhoEarned(badge) {
+
+//takes a string, for ex: usersWhoEarned('Newbie') => [ {user}, {user}, {user} ]
+function usersWhoEarned( badge ) {
   var whoObject = badges[badge].who();
   var response = [];
   for(var user in whoObject) {
@@ -94,6 +96,8 @@ function usersWhoEarned(badge) {
     //   return response;
     // };
 
+
+//takes a string, for ex: badgesEarnedBy('Joseph Fraley') => [ {badge}, {badge}, {badge} ]
 function badgesEarnedBy(user) {
   var badgesObject = users[user].badges;
   var response = [];
@@ -118,6 +122,7 @@ function badgesEarnedBy(user) {
     //   return _.intersection(jobsA, jobsB);
     // };
 
+//give two strings, get an array of badge name strings back
 function intersectBadges(userNameA, userNameB) {
   var badgesA = [];
   var a = badgesEarnedBy(userNameA);
@@ -164,6 +169,7 @@ function similarity(userA, userB) {
     // };
 
 function score(badge, user) {
+
   var userObjectsArray = usersWhoEarned(badge.name);
   var total = 0;
 
@@ -216,12 +222,24 @@ function score(badge, user) {
 
 function recommendBadgesFor(user) {
   var allBadgeObjects = [];
-  for(var badgeKey in badges) {allBadgeObjects.push(badges[badgeKey]);}
+  for(var badgeKey in badges) {allBadgeObjects.push(badges[badgeKey].name);}
+  // console.log( 'ALL BADGE OBJECTS: ', allBadgeObjects);
+  // console.log( 'ALL BADGE OBJECTS - length: ', allBadgeObjects.length);
 
   var userBadgeObjects = [];
-  for(var badgeKey in user.badges) {userBadgeObjects.push(user.badges[badgeKey]);}
+  for(var badgeKey in user.badges) {userBadgeObjects.push(user.badges[badgeKey].name);}
+  // console.log( 'just my badges: ', userBadgeObjects);
+  // console.log( 'just my badges - length: ', userBadgeObjects.length);
 
   var possibleBadges = _.difference(allBadgeObjects, userBadgeObjects);
+
+  var newPossibleBadges = [];
+  for(var badgeName in possibleBadges) {
+    newPossibleBadges.push(badges[possibleBadges[badgeName]]);
+  }
+  var possibleBadges = newPossibleBadges;
+  // console.log('THE DIFFERENCE BETWEEN MY BADGES AND ALL BADGES: ', possibleBadges);
+  // console.log( 'THE DIFFERENCE BETWEEN MY BADGES AND ALL BADGES - length: ', possibleBadges.length);
 
   for(var badge in possibleBadges) {
     if(score(possibleBadges[badge], user) === 0) {delete possibleBadges[badge];}

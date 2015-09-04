@@ -1,3 +1,16 @@
+if(typeof require !== "undefined") {
+	var BadgeFunctions 		= require('./badge-functions');
+	var hasBadges 			= BadgeFunctions.hasBadges;
+	var usersWhoEarned 		= BadgeFunctions.usersWhoEarned;
+    var badgesEarnedBy 		= BadgeFunctions.badgesEarnedBy;
+    var intersectBadges 	= BadgeFunctions.intersectBadges;
+    var similarity 			= BadgeFunctions.similarity;
+    var score 				= BadgeFunctions.score;
+    var recommendBadgesFor 	= BadgeFunctions.recommendBadgesFor;
+	var $ 					= require('./jquery-2.1.4');
+}
+
+
 
 var userNames 	= ['Jasonsiren', 'josephfraley2', 'adamtaitano', 'kathleenkent', 'mkelley2', 'donguyen', 'jeffdunn', 'erikphansen', 'patharryux', 'mitchelllillie', 'jenniferminetree'];
 
@@ -10,18 +23,19 @@ var badges 		= { }; 	//chores
 //================================
 
 function getData ( username ) {
+	console.log('im gonna get ', username, ' data now!')
 	$.ajax( ('https://teamtreehouse.com/' + username + '.json') ).done( callback );
 }
 
+//*********FIGURE OUT HOW TO AUTOMATICALLY GENERATE BADGE ARRAY
+//*********ONLY AFTER A SYNC AJAX CALL IS FINISHED?
 
 
 // call back for the ajax call puts json data into the users object
 //=================================================================
 
 function callback ( results ) {
-	// console.log( 'I am the result of the ajax request!: ')
-	// console.log( results )
-	// console.log( "\n I'm the name property on that guy!: " + results.name )
+	console.log('this is getData using our callback function')
 	users[results.name] = results;
 }
 
@@ -29,10 +43,23 @@ function callback ( results ) {
 
 // put all the users in the object from the start
 //===============================================
+function populate () {
 
-for ( var i = 0; i < userNames.length; i++){
- 	getData(userNames[i]);
+	console.log('this starts the loop of ajax calls broh!')
+
+	for ( var i = 0; i < userNames.length; i++){
+	 	console.log('current loop: ', i)
+
+	 	getData(userNames[i]);
+
+	 	console.log('length of users: ', Object.keys(users).length)
+	 	if ( userNames.length === Object.keys(users).length ) {
+	 		collectAllBadges();
+	 	}
+	}
 }
+
+populate();
 
 
 
@@ -83,6 +110,7 @@ function collectAllBadges ( ){
 
 
 
+
 //		get badges for a single user
 //===============================================================
 
@@ -114,28 +142,69 @@ function addWho ( ) {
 //================================================
 
 function buildDashBoard ( user ) {
-	var $div = $('<div>', {'class': 'user__dashboard'} );
-	$div.append( $('<h1>', {'class': 'user__name'}) ).html( user );
-
+	
 	var $body = $('body');
 
-	$body.append($div);
 
+	//make a container to act as the user's dashboard, attach a name, and attach
+	//the whole thing to the body
+	var $dashboard = $('<div>', {'class': 'user__dashboard'} );
+	( $('<h1>', {'class': 'user__name'}) ).html( user ).appendTo($dashboard);
+	$body.append($dashboard);
+
+
+	//make a container for all the badges and attach it to the dashboard
+	var $badges = $('<div>', {'class': 'user__badges'} )	
+	$dashboard.append($badges);
+
+
+	//this loops through each of the user's badges
 	for ( badge in users[user].badges ){
 
-		console.log('this badge image url, ', users[user].badges[badge].icon_url )
-		console.log('this badge title, ', users[user].badges[badge].name)
 
-		var $badgeBoard = $('<div>', {'class': 'user__badge-board'} )
-		$div.append($badgeBoard);
+		//make a card to hold badge image and title
+		var $badge = $('<div>', {'class': 'badges__badge'})
 
-		var $badge = $('<img>', {'src': users[user].badges[badge].icon_url, 'class': 'user__badge'} );
-		var $title = $('<span>', {'class': 'user__badge__title'}).html( users[user].badges[badge].name );
-		$badgeBoard.append($title);
-		$badgeBoard.append($badge);
+
+		//make badge image and title
+		var $badgeImage = $('<img>', {'src': users[user].badges[badge].icon_url, 'class': 'badges__badge--image'} );
+		var $badgeTitle = $('<span>', {'class': 'badges__badge--title'}).html( users[user].badges[badge].name );
 		
+
+		//add the title and image to a badge card
+		$badge.append($badgeTitle);
+		$badge.append($badgeImage);
+
+
+		//add the current badge card to the badges container
+		$badges.append($badge);	
 	}
-}
+
+	//make a container for the user's recommended badges, then save the
+	//recommendations in an array
+	var $recommendations = $('<div>', {'class': 'user__recommendations'})
+	var array = recommendBadgesFor(users[ user ]);
+
+
+	//loop through the first three recommended
+	for ( var i = 0; i < 3; i++ ) {
+
+		var $recommended 		= $('<div>', {'class': 'recommendations__recommended'})
+
+		//same as badge cards above
+		var $recommendedTitle 	= $('<h2>', {'class': 'recommendations__recommended--title'}).html(array[i].badge.name);
+		var $recommendedImage   = $('<img>', {'src': array[i].badge.icon_url, 'class': 'recommendations__recommended--image'});
+
+		$recommended.append($recommendedTitle);
+		$recommended.append($recommendedImage);
+
+		$recommendations.append($recommended);
+	}
+
+	//attach the recommended container to the dashboard
+	$dashboard.append($recommendations);
+}	// <----------END OF DASHBOARD CONSTRUCTION--------->
+
 
 
 

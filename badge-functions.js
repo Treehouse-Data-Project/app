@@ -223,6 +223,7 @@ function score(badge, user) {
 function recommendBadgesFor(user) {
   var allBadgeObjects = [];
   for(var badgeKey in badges) {allBadgeObjects.push(badges[badgeKey].name);}
+
   // console.log( 'ALL BADGE OBJECTS: ', allBadgeObjects);
   // console.log( 'ALL BADGE OBJECTS - length: ', allBadgeObjects.length);
 
@@ -240,6 +241,7 @@ function recommendBadgesFor(user) {
   var possibleBadges = newPossibleBadges;
   // console.log('THE DIFFERENCE BETWEEN MY BADGES AND ALL BADGES: ', possibleBadges);
   // console.log( 'THE DIFFERENCE BETWEEN MY BADGES AND ALL BADGES - length: ', possibleBadges.length);
+
 
   for(var badge in possibleBadges) {
     if(score(possibleBadges[badge], user) === 0) {delete possibleBadges[badge];}

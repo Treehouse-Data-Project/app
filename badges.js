@@ -23,20 +23,21 @@ var badges 		= { }; 	//chores
 //================================
 
 function getData ( username ) {
-	console.log('im gonna get ', username, ' data now!')
+	//console.log('im gonna get ', username, ' data now!')
 	$.ajax( ('https://teamtreehouse.com/' + username + '.json') ).done( callback );
 }
 
-//*********FIGURE OUT HOW TO AUTOMATICALLY GENERATE BADGE ARRAY
-//*********ONLY AFTER A SYNC AJAX CALL IS FINISHED?
 
 
 // call back for the ajax call puts json data into the users object
 //=================================================================
 
 function callback ( results ) {
-	console.log('this is getData using our callback function')
 	users[results.name] = results;
+
+	if ( userNames.length === Object.keys(users).length ) {
+	 		collectAllBadges();
+	}
 }
 
 
@@ -44,18 +45,8 @@ function callback ( results ) {
 // put all the users in the object from the start
 //===============================================
 function populate () {
-
-	console.log('this starts the loop of ajax calls broh!')
-
 	for ( var i = 0; i < userNames.length; i++){
-	 	console.log('current loop: ', i)
-
-	 	getData(userNames[i]);
-
-	 	console.log('length of users: ', Object.keys(users).length)
-	 	if ( userNames.length === Object.keys(users).length ) {
-	 		collectAllBadges();
-	 	}
+	 	getData(userNames[i]);	 	
 	}
 }
 
@@ -183,7 +174,10 @@ function buildDashBoard ( user ) {
 	//make a container for the user's recommended badges, then save the
 	//recommendations in an array
 	var $recommendations = $('<div>', {'class': 'user__recommendations'})
+	$recommendations.html('<h4>Consider getting some of these badges: </h4>')
 	var array = recommendBadgesFor(users[ user ]);
+	
+	var $containerRecs = $('<div>', {'class': 'rec-container'})
 
 
 	//loop through the first three recommended
@@ -198,10 +192,11 @@ function buildDashBoard ( user ) {
 		$recommended.append($recommendedTitle);
 		$recommended.append($recommendedImage);
 
-		$recommendations.append($recommended);
+		$containerRecs.append($recommended);
 	}
 
 	//attach the recommended container to the dashboard
+	$recommendations.append($containerRecs);
 	$dashboard.append($recommendations);
 }	// <----------END OF DASHBOARD CONSTRUCTION--------->
 

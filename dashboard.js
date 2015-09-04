@@ -23,6 +23,22 @@ function buildTimeLine () {
 	$timeLine.append($graph);
 
 	return $timeLine;
+}
+
+function buildRecommendationCard () {
+
+	var $recommendationCard = $( '<div>', {'class': 'recommendationCard'} );
+
+	var recommendedBadges = recommendBadgesFor(users[ user ]);
+
+	for ( var i = 0; i < 3; i++ ) {
+		if ( recommendedBadges[i].badge.name !== 'undefined' ) {
+			var $recommendedBadgeIcon = $('<img>', {'src': recommendedBadges[i].badge.icon_url, 'class': 'recommendationCard__image'});
+			$recommendationCard.append($recommendedBadgeIcon);
+		}
+	}
+
+	return $recommendationCard;
 
 }
 
@@ -87,13 +103,13 @@ function buildDashBoard ( user ) {
 
 	var $nameCard = buildNameCard();
 	var $timeLine = buildTimeLine();
-	
+	var $recommendationCard = buildRecommendationCard();
 	var $recentBadges = buildRecentBadges();
 	var $topicsLearned = buildTopicsLearned();
 
 	$dashboard.append($nameCard)
 			  .append($timeLine)
-			  
+			  .append($recommendationCard)
 			  .append($recentBadges)
 			  .append($topicsLearned)
 

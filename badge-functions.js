@@ -222,19 +222,24 @@ function score(badge, user) {
 
 function recommendBadgesFor(user) {
   var allBadgeObjects = [];
-  for(var badgeKey in badges) {allBadgeObjects.push(badges[badgeKey]);}
-  console.log( 'ALL THE BADGES: ', allBadgeObjects)
-  console.log( 'ALL THE BADGES: ', allBadgeObjects.length)
-  console.log( 'ALL THE BADGES: ', typeof allBadgeObjects)
+  for(var badgeKey in badges) {allBadgeObjects.push(badges[badgeKey].name);}
+  // console.log( 'ALL BADGE OBJECTS: ', allBadgeObjects);
+  // console.log( 'ALL BADGE OBJECTS - length: ', allBadgeObjects.length);
 
   var userBadgeObjects = [];
-  for(var badgeKey in user.badges) {userBadgeObjects.push(user.badges[badgeKey]);}
-  console.log( 'just my badges: ', userBadgeObjects)
-  console.log( 'just my badges: ', userBadgeObjects.length)
-
+  for(var badgeKey in user.badges) {userBadgeObjects.push(user.badges[badgeKey].name);}
+  // console.log( 'just my badges: ', userBadgeObjects);
+  // console.log( 'just my badges - length: ', userBadgeObjects.length);
 
   var possibleBadges = _.difference(allBadgeObjects, userBadgeObjects);
-  console.log('THE DIFFERENCE BETWEEN YOUR BADGES AND ALL: ', possibleBadges)
+
+  var newPossibleBadges = [];
+  for(var badgeName in possibleBadges) {
+    newPossibleBadges.push(badges[possibleBadges[badgeName]]);
+  }
+  var possibleBadges = newPossibleBadges;
+  // console.log('THE DIFFERENCE BETWEEN MY BADGES AND ALL BADGES: ', possibleBadges);
+  // console.log( 'THE DIFFERENCE BETWEEN MY BADGES AND ALL BADGES - length: ', possibleBadges.length);
 
   for(var badge in possibleBadges) {
     if(score(possibleBadges[badge], user) === 0) {delete possibleBadges[badge];}
@@ -277,4 +282,3 @@ if(typeof module !== "undefined") {
     recommendBadgesFor: recommendBadgesFor
   };
 }
-

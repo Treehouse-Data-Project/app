@@ -37,6 +37,9 @@ div {
   background: brown;
   margin: 1.875% 1.875% 1.875% 3.75%; }
 
+.recommendationCard__image {
+  width: 33%; }
+
 /* 5. TOPICS LEARNED STYLES
 ============================*/
 .topicsLearned {
@@ -52,6 +55,16 @@ div {
   height: 28.33333%;
   background: brown;
   margin: 1.875% 3.75% 1.875% 3.75%; }
+
+.recentBadges__badge {
+  width: 10%;
+  text-align: center; }
+
+.recentBadges__badge--image {
+  width: 100%; }
+
+.recentBadges__badge--title {
+  font-size: 10px; }
 
 /* 7. TIMELINE STYLES
 ============================*/

@@ -89,7 +89,7 @@ div {
 }
 
 .recommendationCard__image{
-
+	width: 33%;
 }
 
 
@@ -120,9 +120,18 @@ div {
 	//border: 1px solid $secondaryColor;
 	margin: ($dashboardGutter/2) $dashboardGutter ($dashboardGutter/2) $dashboardGutter;
 }
-.recentBadges__badge{}
-.recentBadges__badge--image{}
-.recentBadges__badge--title{}
+.recentBadges__badge{
+	width: 10%;
+	text-align: center;
+}
+
+.recentBadges__badge--image{
+	width: 100%;
+}
+
+.recentBadges__badge--title{
+	font-size: 10px;
+}
 
 
 

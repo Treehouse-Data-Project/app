@@ -1,13 +1,49 @@
-.badgeBoard {
+/*	DASHBOARD STYLES
+==========================================*/
+.user__dashboard {
+  width: 100%;
+  height: 500px;
+  background-color: #b0b0b0; }
+
+.user__name {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold; }
+
+.user__badges {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  align-content: center;
-  width: 80%;
-  margin: 0 auto; }
+  justify-content: center; }
 
-.badge {
-  width: 26.66667%;
-  height: 26.66667%; }
+.badges__badge {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 10%; }
+
+.badges__badge--image {
+  width: 100%; }
+
+.badges__badge--title {
+  display: none;
+  width: 100%;
+  text-align: center; }
+
+.user__recommendations {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
+  width: 100%; }
+
+.recommendations__recommended {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  width: 33%; }
+
+.recommendations__recommended--image {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

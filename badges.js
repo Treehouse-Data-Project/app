@@ -1,13 +1,7 @@
 if(typeof require !== "undefined") {
-	var BadgeFunctions 		= require('./badge-functions');
-	var hasBadges 			= BadgeFunctions.hasBadges;
-	var usersWhoEarned 		= BadgeFunctions.usersWhoEarned;
-    var badgesEarnedBy 		= BadgeFunctions.badgesEarnedBy;
-    var intersectBadges 	= BadgeFunctions.intersectBadges;
-    var similarity 			= BadgeFunctions.similarity;
-    var score 				= BadgeFunctions.score;
-    var recommendBadgesFor 	= BadgeFunctions.recommendBadgesFor;
-	var $ 					= require('./jquery-2.1.4');
+	var DashBoard 		 = require('./dashboard');
+	var buildDashBoard = DashBoard.buildDashBoard;
+	var $ 					   = require('./jquery-2.1.4');
 }
 
 
@@ -46,7 +40,7 @@ function callback ( results ) {
 //===============================================
 function populate () {
 	for ( var i = 0; i < userNames.length; i++){
-	 	getData(userNames[i]);	 	
+	 	getData(userNames[i]);
 	}
 }
 
@@ -68,20 +62,20 @@ function collectAllBadges ( ){
 		var userBadges = getBadges( user );
 
 		for ( var badge in userBadges ) {
-			
+
 			if ( !(userBadges[badge].name in badges) ){
 				badges[userBadges[badge].name] = userBadges[badge];
 			}
-		
+
 			//	call this method to return an array of user objects that have this badge
 			badges[userBadges[badge].name].who = function ( ){
 
 				var who = [];
 
 				// if ( arguments.length > 1 ){
-					
+
 				// }
-				
+
 				for ( var user in users ) {
 
 					for ( var i = 0; i < users[user].badges.length; i++ ) {
@@ -126,4 +120,3 @@ function addWho ( ) {
 		}
 	}
 }
-

@@ -1,3 +1,17 @@
+if(typeof require !== "undefined") {
+	var BadgeFunctions 		  = require('./badge-functions');
+	var hasBadges 			    = BadgeFunctions.hasBadges;
+	var usersWhoEarned 		  = BadgeFunctions.usersWhoEarned;
+  var badgesEarnedBy 		  = BadgeFunctions.badgesEarnedBy;
+  var intersectBadges 	  = BadgeFunctions.intersectBadges;
+  var similarity 			    = BadgeFunctions.similarity;
+  var score 				      = BadgeFunctions.score;
+  var recommendBadgesFor 	= BadgeFunctions.recommendBadgesFor;
+	var $ 					        = require('./jquery-2.1.4');
+}
+
+
+
 function buildNameCard () {
 
 	var $nameCard = $( '<div>', {'class': 'nameCard'} );
@@ -73,7 +87,7 @@ function buildRecentBadges () {
 		//make badge image and title
 		var $badgeImage = $('<img>', { /*'src': */ 'class': 'recentBadges__badge--image'} );
 		var $badgeTitle = $('<span>', {'class': 'recentBadges__badge--title'}).html( /* user.badges[i].name */ );
-		
+
 
 		//add the title and image to a badge card
 		$badge.append($badgeTitle);
@@ -81,7 +95,7 @@ function buildRecentBadges () {
 
 
 		//add the current badge card to the badges container
-		$recentBadges.append($badge);	
+		$recentBadges.append($badge);
 	}
 
 	return $recentBadges;
@@ -90,7 +104,7 @@ function buildRecentBadges () {
 
 
 function buildDashBoard ( user ) {
-	
+
 	var $body = $('body');
 
 
@@ -115,3 +129,10 @@ function buildDashBoard ( user ) {
 
 }	// <----------END OF DASHBOARD CONSTRUCTION--------->
 
+
+
+if(typeof module !== "undefined") {
+	module.exports = {
+    buildDashBoard: buildDashBoard
+  };
+}

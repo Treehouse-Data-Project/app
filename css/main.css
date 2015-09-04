@@ -1,8 +1,12 @@
+/*	GENERAL STYLES
+==========================================*/
+#user_select {
+  width: 195px; }
+
 /*	DASHBOARD STYLES
 ==========================================*/
 .user__dashboard {
   width: 100%;
-  height: 500px;
   background-color: #b0b0b0; }
 
 .user__name {
@@ -31,17 +35,22 @@
   text-align: center; }
 
 .user__recommendations {
+  width: 100%; }
+
+.rec-container {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-  align-content: center;
   width: 100%; }
 
 .recommendations__recommended {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  width: 33%; }
+  width: 10%;
+  margin: 2%; }
+
+.recommendations__recommended--title {
+  text-align: center; }
 
 .recommendations__recommended--image {
   width: 100%; }

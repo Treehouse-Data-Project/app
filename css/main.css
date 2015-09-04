@@ -15,50 +15,107 @@
 div {
   display: inline-block; }
 
+input {
+  width: 250px;
+  border: 1px solid steelblue; }
+
+* {
+  font-family: serif; }
+
 /* 2. DASHBOARD STYLES
 ============================*/
 .user__dashboard {
-  width: 100%;
-  height: 100%; }
+  width: 95%;
+  height: 100%;
+  border: 2px solid black;
+  margin: 0 auto;
+  background: darkgreen;
+  margin-top: 20px; }
+
+.user__dashboard div {
+  padding: 5px; }
+
+.user__dashboard h2 {
+  padding: 5px 0;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: white; }
 
 /* 3. NAMECARD STYLES
 ============================*/
 .nameCard {
-  width: 29.58333%;
-  height: 28.33333%;
-  background: brown;
-  margin: 3.75% 1.875% 1.875% 3.75%; }
+  width: 29.66667%;
+  height: 30.66667%;
+  background: saddlebrown;
+  margin: 2% 1% 1% 2%; }
+
+.nameCard__image {
+  width: 100%; }
+
+.nameCard__title {
+  font-size: 28px;
+  color: white;
+  font-family: sans-serif; }
 
 /* 4. RECOMMENDED STYLES
 ============================*/
 .recommendationCard {
-  width: 44.375%;
-  height: 28.33333%;
-  background: brown;
-  margin: 1.875% 1.875% 1.875% 3.75%; }
+  width: 44.5%;
+  height: 30.66667%;
+  background: saddlebrown;
+  margin: 1% 1% 1% 2%; }
+
+.recommendationCard__image {
+  width: 28%;
+  margin: 5px; }
 
 /* 5. TOPICS LEARNED STYLES
 ============================*/
 .topicsLearned {
-  width: 44.375%;
-  height: 28.33333%;
-  background: brown;
-  margin: 1.875% 3.75% 1.875% 1.875%; }
+  width: 44.5%;
+  height: 30.66667%;
+  background: saddlebrown;
+  margin: 1% 2% 1% 1%;
+  vertical-align: top; }
 
 /* 6. RECENT BADGES STYLES
 ============================*/
 .recentBadges {
-  width: 92.5%;
-  height: 28.33333%;
-  background: brown;
-  margin: 1.875% 3.75% 1.875% 3.75%; }
+  width: 91%;
+  height: 30.66667%;
+  background: saddlebrown;
+  margin: 1% 2% 1% 2%; }
+
+div.recentBadges {
+  padding: 10px; }
+
+.recentBadges__badge {
+  width: 10%;
+  text-align: center;
+  position: relative;
+  margin: 5px; }
+
+.recentBadges__badge--image {
+  width: 100%; }
+
+.recentBadges__badge--title {
+  font-size: 10px; }
+
+.recentBadges__badge--tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5%;
+  color: white;
+  z-index: 99999;
+  position: absolute;
+  left: -20px; }
 
 /* 7. TIMELINE STYLES
 ============================*/
 .timeLine {
-  width: 59.16667%;
-  height: 28.33333%;
-  background: brown;
-  margin: 3.75% 3.75% 1.875% 1.875%; }
+  width: 59.33333%;
+  height: 30.66667%;
+  background: saddlebrown;
+  margin: 2% 2% 1% 1%;
+  vertical-align: top; }
 
 /*# sourceMappingURL=main.css.map */
